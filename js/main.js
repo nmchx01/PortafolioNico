@@ -1,51 +1,39 @@
 /**
- * main.js — Portafolio Nicolás Monroy Chaparro
- * ─────────────────────────────────────────────
- * Módulos:
- *   1. Navegación móvil
- *   2. Scroll reveal
- *   3. Navbar (fondo + enlace activo)
- *   4. Parallax hero
- *   5. Partículas
- *   6. Efecto vidrio roto (hero image)
+ * Interacciones del portafolio: navegación accesible y animaciones GSAP.
  */
-
 'use strict';
 
-// ═══════════════════════════════════════════════════════════
-// 1. NAVEGACIÓN MÓVIL
-// ═══════════════════════════════════════════════════════════
 function initMobileNav() {
-  const hamburger = document.getElementById('navHamburger');
-  const navLinks  = document.getElementById('navLinks');
-  const navCta    = document.getElementById('navCta');
+  const button = document.getElementById('navHamburger');
+  const links = document.getElementById('navLinks');
+  const cta = document.getElementById('navCta');
+  if (!button || !links) return;
 
-  if (!hamburger || !navLinks) return;
+  const setMenuOpen = open => {
+    button.classList.toggle('active', open);
+    links.classList.toggle('open', open);
+    if (cta) cta.classList.toggle('open', open);
+    button.setAttribute('aria-expanded', String(open));
+    button.setAttribute(
+      'aria-label',
+      open ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'
+    );
+  };
 
-  function setMenuOpen(open) {
-    hamburger.classList.toggle('active', open);
-    navLinks.classList.toggle('open', open);
-    if (navCta) navCta.classList.toggle('open', open);
-    hamburger.setAttribute('aria-expanded', String(open));
-    hamburger.setAttribute('aria-label', open
-      ? 'Cerrar menú de navegación'
-      : 'Abrir menú de navegación');
-  }
-
-  hamburger.addEventListener('click', () => {
-    setMenuOpen(hamburger.getAttribute('aria-expanded') !== 'true');
+  button.addEventListener('click', () => {
+    setMenuOpen(button.getAttribute('aria-expanded') !== 'true');
   });
 
-  navLinks.querySelectorAll('a').forEach(link =>
-    link.addEventListener('click', () => setMenuOpen(false))
-  );
+  links.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => setMenuOpen(false));
+  });
 
-  if (navCta) navCta.addEventListener('click', () => setMenuOpen(false));
+  if (cta) cta.addEventListener('click', () => setMenuOpen(false));
 
   document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && hamburger.getAttribute('aria-expanded') === 'true') {
+    if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
       setMenuOpen(false);
-      hamburger.focus();
+      button.focus();
     }
   });
 
@@ -54,392 +42,153 @@ function initMobileNav() {
   });
 }
 
-// ═══════════════════════════════════════════════════════════
-// 2. SCROLL REVEAL
-// ═══════════════════════════════════════════════════════════
-function initScrollReveal() {
-  const observer = new IntersectionObserver(
-    entries => entries.forEach(e => {
-      if (e.isIntersecting) e.target.classList.add('visible');
-    }),
-    { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
-  );
-
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-}
-
-// ═══════════════════════════════════════════════════════════
-// 3. NAVBAR — FONDO Y ENLACE ACTIVO
-// ═══════════════════════════════════════════════════════════
 function initNavbar() {
-  const navbar     = document.getElementById('navbar');
-  const sections   = document.querySelectorAll('section[id]');
-  const navAnchors = document.querySelectorAll('.nav-links a');
-
+  const navbar = document.getElementById('navbar');
   if (!navbar) return;
 
-  // Fondo al hacer scroll
-  window.addEventListener('scroll', () => {
-    navbar.style.background = window.scrollY > 60
-      ? 'rgba(5,5,8,.88)'
-      : 'rgba(5,5,8,.6)';
-  }, { passive: true });
+  const updateNavbar = () => navbar.classList.toggle('scrolled', window.scrollY > 24);
+  updateNavbar();
+  window.addEventListener('scroll', updateNavbar, { passive: true });
 
-  // Resaltar enlace de la sección visible
-  const activeObserver = new IntersectionObserver(
-    entries => entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      navAnchors.forEach(a => {
-        a.style.color = a.getAttribute('href') === '#' + e.target.id
-          ? 'var(--cyan)'
-          : '';
-      });
-    }),
-    { threshold: 0.25 }
-  );
+  if (typeof IntersectionObserver === 'undefined') return;
 
-  sections.forEach(s => activeObserver.observe(s));
-}
-
-// ═══════════════════════════════════════════════════════════
-// 4. PARALLAX HERO
-// ═══════════════════════════════════════════════════════════
-function initParallax() {
-  const heroContent = document.querySelector('.hero-content');
-  if (!heroContent) return;
-
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    if (scrollY < window.innerHeight) {
-      heroContent.style.transform = `translateY(${scrollY * 0.15}px)`;
-      heroContent.style.opacity   = 1 - scrollY / (window.innerHeight * 0.9);
-    }
-  }, { passive: true });
-}
-
-// ═══════════════════════════════════════════════════════════
-// 5. PARTÍCULAS
-// ═══════════════════════════════════════════════════════════
-function initParticles() {
-  const canvas = document.getElementById('particles');
-  if (!canvas) return;
-
-  const ctx              = canvas.getContext('2d');
-  const CONNECTION_DIST  = 120;
-  let width, height, particles;
-  let animationFrameId = null;
-  let isVisible = true;
-
-  // Menos partículas en pantallas pequeñas: menor costo de CPU/batería
-  function particleCount() {
-    return window.innerWidth < 768 ? 28 : 70;
-  }
-
-  function resize() {
-    const hero = document.getElementById('hero');
-    width  = canvas.width  = hero.offsetWidth;
-    height = canvas.height = hero.offsetHeight;
-  }
-
-  function createParticles() {
-    particles = Array.from({ length: particleCount() }, () => ({
-      x:       Math.random() * width,
-      y:       Math.random() * height,
-      r:       Math.random() * 1.6 + 0.3,
-      dx:      (Math.random() - 0.5) * 0.35,
-      dy:      (Math.random() - 0.5) * 0.35,
-      opacity: Math.random() * 0.4 + 0.1,
-    }));
-  }
-
-  function drawParticles() {
-    animationFrameId = null;
-    if (!isVisible || document.hidden) return;
-
-    ctx.clearRect(0, 0, width, height);
-
-    // Dibujar partículas
-    for (const p of particles) {
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(0,212,245,${p.opacity})`;
-      ctx.fill();
-
-      p.x += p.dx;
-      p.y += p.dy;
-      if (p.x < 0) p.x = width;
-      if (p.x > width)  p.x = 0;
-      if (p.y < 0) p.y = height;
-      if (p.y > height) p.y = 0;
-    }
-
-    // Dibujar conexiones entre partículas cercanas
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx   = particles[i].x - particles[j].x;
-        const dy   = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < CONNECTION_DIST) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(0,212,245,${0.05 * (1 - dist / CONNECTION_DIST)})`;
-          ctx.lineWidth   = 0.5;
-          ctx.stroke();
+  const navAnchors = document.querySelectorAll('.nav-links a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      navAnchors.forEach(link => {
+        if (link.getAttribute('href') === '#' + entry.target.id) {
+          link.setAttribute('aria-current', 'location');
+        } else {
+          link.removeAttribute('aria-current');
         }
+      });
+    });
+  }, { threshold: 0.25 });
+
+  document.querySelectorAll('main section[id]').forEach(section => observer.observe(section));
+}
+
+function initGsapAnimations() {
+  const { gsap, ScrollTrigger } = window;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion || !gsap || !ScrollTrigger) return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const scrollProgress = document.querySelector('.scroll-progress');
+  if (scrollProgress) {
+    gsap.to(scrollProgress, {
+      scaleX: 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: document.documentElement,
+        start: 'top top',
+        end: 'max',
+        scrub: 0.25
       }
-    }
-
-    animationFrameId = requestAnimationFrame(drawParticles);
+    });
   }
 
-  function startAnimation() {
-    if (animationFrameId === null && isVisible && !document.hidden) {
-      animationFrameId = requestAnimationFrame(drawParticles);
-    }
+  const intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  intro
+    .fromTo('.hero-label', { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.65 })
+    .fromTo('.hero-name .line', { autoAlpha: 0, y: 34 }, {
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.78,
+      stagger: 0.1
+    }, '-=0.34')
+    .fromTo('.hero-tagline', { autoAlpha: 0, y: 18 }, {
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.62
+    }, '-=0.36')
+    .fromTo('.hero-actions, .hero-meta', { autoAlpha: 0, y: 14 }, {
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.52,
+      stagger: 0.09
+    }, '-=0.28');
+
+  gsap.fromTo('.hero-photo-card', {
+    autoAlpha: 0,
+    y: 34,
+    rotate: 5,
+    scale: 0.97
+  }, {
+    autoAlpha: 1,
+    y: 0,
+    rotate: 1.2,
+    scale: 1,
+    duration: 1.05,
+    delay: 0.18,
+    ease: 'power3.out'
+  });
+
+  gsap.fromTo('.photo-orbit', { autoAlpha: 0, x: 18 }, {
+    autoAlpha: 1,
+    x: 0,
+    duration: 0.65,
+    delay: 0.65,
+    ease: 'power2.out'
+  });
+
+  gsap.to('.hero-photo-card', {
+    y: -7,
+    duration: 2.8,
+    delay: 1.2,
+    repeat: -1,
+    yoyo: true,
+    ease: 'sine.inOut'
+  });
+
+  gsap.to('.photo-orbit', {
+    y: -8,
+    duration: 2.2,
+    delay: 1.4,
+    repeat: -1,
+    yoyo: true,
+    ease: 'sine.inOut'
+  });
+
+  const knowledgePhoto = document.querySelector('.knowledge-photo');
+  if (knowledgePhoto) {
+    gsap.fromTo(knowledgePhoto, { scale: 1.12 }, {
+      scale: 1,
+      duration: 1.2,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: knowledgePhoto,
+        start: 'top 84%',
+        once: true
+      }
+    });
   }
 
-  function stopAnimation() {
-    if (animationFrameId === null) return;
-    cancelAnimationFrame(animationFrameId);
-    animationFrameId = null;
-  }
+  gsap.utils.toArray('.reveal:not(.hero-content)').forEach(element => {
+    gsap.fromTo(element, { autoAlpha: 0, y: 28 }, {
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.72,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: element,
+        start: 'top 88%',
+        once: true
+      }
+    });
+  });
 
-  resize();
-  createParticles();
-  startAnimation();
-  window.addEventListener('resize', () => { resize(); createParticles(); });
-
-  if (typeof IntersectionObserver !== 'undefined') {
-    const visibilityObserver = new IntersectionObserver(entries => {
-      isVisible = entries[0].isIntersecting;
-      if (isVisible) startAnimation();
-      else stopAnimation();
-    }, { threshold: 0.01 });
-    visibilityObserver.observe(canvas);
-  }
-
-  document.addEventListener('visibilitychange', () => {
-    if (document.hidden) stopAnimation();
-    else startAnimation();
+  gsap.utils.toArray('.project-card, .skill-card, .recognition-item').forEach(card => {
+    const scaleCard = gsap.quickTo(card, 'scale', { duration: 0.2, ease: 'power2.out' });
+    card.addEventListener('pointerenter', () => scaleCard(1.012));
+    card.addEventListener('pointerleave', () => scaleCard(1));
   });
 }
 
-// ═══════════════════════════════════════════════════════════
-// 6. EFECTO VIDRIO ROTO (HERO IMAGE)
-//    Scroll hacia abajo → imagen se rompe en fragmentos
-//    Scroll hacia arriba → se reconstruye sola
-// ═══════════════════════════════════════════════════════════
-function initShatterEffect() {
-  const heroSection = document.getElementById('hero');
-  const heroImg     = document.querySelector('.hero-bg-img img');
-  if (!heroImg || !heroSection) return;
-
-  // ── Crear canvas para el efecto ──────────────────────────
-  const canvas = document.createElement('canvas');
-  canvas.style.cssText = [
-    'position:absolute', 'inset:0', 'width:100%', 'height:100%',
-    'z-index:1', 'pointer-events:none',
-  ].join(';');
-  heroSection.appendChild(canvas);
-  const ctx = canvas.getContext('2d');
-
-  // ── Estado ────────────────────────────────────────────────
-  let shards          = [];
-  let width           = 0;
-  let height          = 0;
-  let currentProgress = 0;  // valor real animado
-  let targetProgress  = 0;  // valor objetivo según scroll
-  let animationFrameId = null;
-
-  // ── Imagen fuente ─────────────────────────────────────────
-  const img  = new Image();
-  img.src    = heroImg.src;
-
-  // ── Generación de fragmentos triangulares ─────────────────
-  /**
-   * Divide el canvas en una grilla irregular de triángulos.
-   * Cada shard guarda sus vértices, centroide y parámetros de vuelo.
-   */
-  function generateShards(w, h) {
-    const COLS = 9;
-    const ROWS = 7;
-    const pts  = [];
-
-    // Crear puntos de grilla con desplazamiento aleatorio (jitter)
-    for (let r = 0; r <= ROWS; r++) {
-      for (let c = 0; c <= COLS; c++) {
-        const isEdge = r === 0 || r === ROWS || c === 0 || c === COLS;
-        const jx = isEdge ? 0 : (Math.random() - 0.5) * (w / COLS) * 0.55;
-        const jy = isEdge ? 0 : (Math.random() - 0.5) * (h / ROWS) * 0.55;
-        pts.push([
-          (c / COLS) * w + jx,
-          (r / ROWS) * h + jy,
-        ]);
-      }
-    }
-
-    const result = [];
-    const cx = w / 2;
-    const cy = h / 2;
-    const maxDist = Math.sqrt(cx * cx + cy * cy);
-
-    for (let r = 0; r < ROWS; r++) {
-      for (let c = 0; c < COLS; c++) {
-        const tl = pts[r       * (COLS + 1) + c];
-        const tr = pts[r       * (COLS + 1) + c + 1];
-        const bl = pts[(r + 1) * (COLS + 1) + c];
-        const br = pts[(r + 1) * (COLS + 1) + c + 1];
-
-        // Cada celda → 2 triángulos
-        [[tl, tr, bl], [tr, br, bl]].forEach(tri => {
-          // Centroide del triángulo
-          const centX = (tri[0][0] + tri[1][0] + tri[2][0]) / 3;
-          const centY = (tri[0][1] + tri[1][1] + tri[2][1]) / 3;
-
-          // Vector de dispersión desde el centro de la imagen
-          const dirX = centX - cx;
-          const dirY = centY - cy;
-          const len  = Math.sqrt(dirX * dirX + dirY * dirY) || 1;
-
-          // Los fragmentos del borde vuelan más lejos
-          const spread = 0.5 + (len / maxDist) * 1.0;
-
-          result.push({
-            verts:    tri,
-            centX,
-            centY,
-            velX:     (dirX / len) * spread * (w * 0.28 + Math.random() * w * 0.18),
-            velY:     (dirY / len) * spread * (h * 0.28 + Math.random() * h * 0.18),
-            rotSpeed: (Math.random() - 0.5) * Math.PI * 2.2,
-          });
-        });
-      }
-    }
-
-    return result;
-  }
-
-  // ── Setup / resize ────────────────────────────────────────
-  function setup() {
-    width  = canvas.width  = heroSection.offsetWidth;
-    height = canvas.height = heroSection.offsetHeight;
-    shards = generateShards(width, height);
-  }
-
-  // ── Interpolación lineal ──────────────────────────────────
-  function lerp(a, b, t) { return a + (b - a) * t; }
-
-  // ── Dibujo de un frame ────────────────────────────────────
-  function drawShards(progress) {
-    ctx.clearRect(0, 0, width, height);
-    if (!img.complete || !img.naturalWidth) return;
-
-    for (const shard of shards) {
-      const tx      = shard.velX * progress;
-      const ty      = shard.velY * progress;
-      const rot     = shard.rotSpeed * progress;
-      const opacity = Math.max(0, 1 - progress * 0.9);
-
-      ctx.save();
-      ctx.globalAlpha = opacity * 0.20; // mantener la misma opacidad base del hero
-
-      // Transformar: trasladar al centroide → rotar → volver
-      ctx.translate(shard.centX + tx, shard.centY + ty);
-      ctx.rotate(rot);
-      ctx.translate(-shard.centX, -shard.centY);
-
-      // Recortar al triángulo del shard
-      ctx.beginPath();
-      ctx.moveTo(shard.verts[0][0], shard.verts[0][1]);
-      ctx.lineTo(shard.verts[1][0], shard.verts[1][1]);
-      ctx.lineTo(shard.verts[2][0], shard.verts[2][1]);
-      ctx.closePath();
-      ctx.clip();
-
-      // Dibujar la porción de imagen que corresponde
-      ctx.drawImage(img, 0, 0, width, height);
-
-      // Borde brillante entre fragmentos (efecto vidrio)
-      if (progress > 0.04) {
-        ctx.globalAlpha = progress * 0.6;
-        ctx.strokeStyle = `rgba(0,212,245,1)`;
-        ctx.lineWidth   = 0.7;
-        ctx.stroke();
-      }
-
-      ctx.restore();
-    }
-  }
-
-  // ── Loop de animación ─────────────────────────────────────
-  function scheduleAnimation() {
-    if (animationFrameId === null && !document.hidden) {
-      animationFrameId = requestAnimationFrame(animate);
-    }
-  }
-
-  function animate() {
-    animationFrameId = null;
-
-    // Suavizado: interpola hacia el target con easing
-    currentProgress = lerp(currentProgress, targetProgress, 0.07);
-    if (Math.abs(currentProgress - targetProgress) < 0.001) {
-      currentProgress = targetProgress;
-    }
-    drawShards(currentProgress);
-
-    // Mostrar u ocultar la img CSS original según el estado
-    heroImg.style.opacity = currentProgress < 0.02 ? '0.20' : '0';
-
-    if (currentProgress !== targetProgress) scheduleAnimation();
-  }
-
-  // ── Vincular al scroll ────────────────────────────────────
-  function onScroll() {
-    const heroHeight = heroSection.offsetHeight;
-    // Progreso: 0 en el top → 1 cuando se ha scrolleado 75% del hero
-    targetProgress = Math.min(1, Math.max(0, window.scrollY / (heroHeight * 0.75)));
-    scheduleAnimation();
-  }
-
-  // ── Iniciar cuando la imagen esté lista ──────────────────
-  function start() {
-    setup();
-    onScroll();
-    drawShards(currentProgress);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', () => {
-      setup();
-      drawShards(currentProgress);
-    });
-    document.addEventListener('visibilitychange', () => {
-      if (!document.hidden && currentProgress !== targetProgress) scheduleAnimation();
-    });
-  }
-
-  if (img.complete && img.naturalWidth) {
-    start();
-  } else {
-    img.addEventListener('load', start);
-  }
-}
-
-// ═══════════════════════════════════════════════════════════
-// PUNTO DE ENTRADA — ejecutar cuando el DOM esté listo
-// ═══════════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', () => {
-  // Quien prefiere menos movimiento no debe recibir parallax, partículas
-  // ni el efecto de vidrio roto (todos son animación continua/vestibular).
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   initMobileNav();
-  initScrollReveal();
   initNavbar();
-  if (!prefersReducedMotion) {
-    initParallax();
-    initParticles();
-    initShatterEffect();
-  }
+  initGsapAnimations();
 });
