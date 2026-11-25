@@ -89,15 +89,11 @@ Además, revisa manualmente la portada, navegación móvil, muro tecnológico, e
 
 `vercel.json` aplica headers de seguridad y políticas de caché a los recursos estáticos. No se configura una versión de Node porque el sitio no ejecuta Node ni tiene fase de build.
 
-### Dominio canónico
+### Dominio canónico y SEO
 
-Los metadatos SEO, `robots.txt` y `sitemap.xml` apuntan actualmente a `https://nmchx01.github.io/`. Si Vercel será el dominio público principal, reemplaza esa URL en los siguientes archivos antes de promocionar el despliegue:
+El dominio principal configurado es `https://portafolio-nico-ruddy.vercel.app/`. Los metadatos canónicos, Open Graph, datos estructurados, `robots.txt` y `sitemap.xml` deben mantenerse alineados con ese dominio. GitHub Pages también puede servir una copia del sitio; en ese caso, conserva la URL de Vercel como canonical para señalar la versión preferida a los buscadores.
 
-- `index.html`
-- `robots.txt`
-- `sitemap.xml`
-
-Después del cambio, configura una redirección permanente desde el dominio secundario para evitar contenido duplicado.
+Tras desplegar cambios, verifica el dominio en Google Search Console, envía `https://portafolio-nico-ruddy.vercel.app/sitemap.xml` y solicita la indexación de la página principal. La indexación y las imágenes que Google muestra dependen de sus sistemas y no se garantizan.
 
 ## Checklist de publicación
 
@@ -106,7 +102,7 @@ Después del cambio, configura una redirección permanente desde el dominio secu
 - [ ] Los headers definidos en `vercel.json` están presentes.
 - [ ] Las descargas de los CV funcionan.
 - [ ] El muro tecnológico se mueve suavemente y respeta `prefers-reduced-motion`.
-- [ ] El dominio canónico coincide con el dominio público definitivo.
+- [ ] El dominio canónico coincide con `https://portafolio-nico-ruddy.vercel.app/`.
 - [ ] El dominio personalizado y HTTPS aparecen como válidos en Vercel.
 - [ ] No existen variables de entorno o secretos innecesarios en el dashboard.
 

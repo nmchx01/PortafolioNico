@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nmchx01.github.io/sitemap.xml
+Sitemap: https://portafolio-nico-ruddy.vercel.app/sitemap.xml
