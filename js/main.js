@@ -76,6 +76,20 @@ function initGsapAnimations() {
 
   gsap.registerPlugin(ScrollTrigger);
 
+  const scrollProgress = document.querySelector('.scroll-progress');
+  if (scrollProgress) {
+    gsap.to(scrollProgress, {
+      scaleX: 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: document.documentElement,
+        start: 'top top',
+        end: 'max',
+        scrub: 0.25
+      }
+    });
+  }
+
   const intro = gsap.timeline({ defaults: { ease: 'power3.out' } });
   intro
     .fromTo('.hero-label', { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.65 })
@@ -120,6 +134,38 @@ function initGsapAnimations() {
     ease: 'power2.out'
   });
 
+  gsap.to('.hero-photo-card', {
+    y: -7,
+    duration: 2.8,
+    delay: 1.2,
+    repeat: -1,
+    yoyo: true,
+    ease: 'sine.inOut'
+  });
+
+  gsap.to('.photo-orbit', {
+    y: -8,
+    duration: 2.2,
+    delay: 1.4,
+    repeat: -1,
+    yoyo: true,
+    ease: 'sine.inOut'
+  });
+
+  const knowledgePhoto = document.querySelector('.knowledge-photo');
+  if (knowledgePhoto) {
+    gsap.fromTo(knowledgePhoto, { scale: 1.12 }, {
+      scale: 1,
+      duration: 1.2,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: knowledgePhoto,
+        start: 'top 84%',
+        once: true
+      }
+    });
+  }
+
   gsap.utils.toArray('.reveal:not(.hero-content)').forEach(element => {
     gsap.fromTo(element, { autoAlpha: 0, y: 28 }, {
       autoAlpha: 1,
@@ -132,6 +178,12 @@ function initGsapAnimations() {
         once: true
       }
     });
+  });
+
+  gsap.utils.toArray('.project-card, .skill-card, .recognition-item').forEach(card => {
+    const scaleCard = gsap.quickTo(card, 'scale', { duration: 0.2, ease: 'power2.out' });
+    card.addEventListener('pointerenter', () => scaleCard(1.012));
+    card.addEventListener('pointerleave', () => scaleCard(1));
   });
 }
 
