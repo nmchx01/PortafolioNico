@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#050508" />
+  <meta name="theme-color" content="#07111f" />
   <meta name="author" content="Nicolás Monroy Chaparro" />
   <title>Nicolás Monroy Chaparro | Ingeniería de Datos e IA</title>
   <meta name="description" content="Portafolio de Nicolás Monroy Chaparro: Power BI, agentes conversacionales, arquitecturas RAG y seguridad de LLMs." />
@@ -581,6 +581,208 @@
       .tech-set[aria-hidden="true"]{display:none}
     }
   </style>
+  <style id="glass-gsap-theme">
+    :root{
+      --bg:#07111f;
+      --cyan:#8ec5ff;
+      --cyan-dim:rgba(108,176,255,.16);
+      --cyan-glow:rgba(67,145,255,.34);
+      --white:#f7faff;
+      --gray:#8b9bb0;
+      --gray-light:#b9c5d5;
+      --glass:rgba(255,255,255,.065);
+      --glass-border:rgba(190,218,255,.16);
+    }
+
+    body{
+      color:#d5dfed;
+      background:
+        radial-gradient(ellipse at 82% 5%,rgba(41,119,227,.2),transparent 34rem),
+        radial-gradient(ellipse at 5% 42%,rgba(25,86,174,.14),transparent 32rem),
+        #07111f;
+    }
+
+    #navbar{
+      background:rgba(7,17,31,.62);
+      border:1px solid rgba(194,220,255,.13);
+      border-top:0;
+      border-radius:0 0 22px 22px;
+      box-shadow:0 16px 48px rgba(0,0,0,.22);
+    }
+    #navbar.scrolled{background:rgba(7,17,31,.88)}
+    .nav-logo{color:#9bcaff}
+    .nav-cta{
+      color:#d9ebff;
+      background:rgba(82,151,255,.12);
+      border-color:rgba(144,194,255,.32);
+    }
+    .nav-cta:hover{background:#8ec5ff;color:#06101d;box-shadow:0 12px 34px rgba(75,147,255,.25)}
+
+    #hero{
+      min-height:min(900px,100svh);
+      display:grid;
+      grid-template-columns:minmax(0,1.12fr) minmax(300px,.78fr);
+      align-items:center;
+      gap:clamp(36px,7vw,100px);
+      text-align:left;
+      padding:clamp(120px,16vh,170px) clamp(24px,8vw,132px) 96px;
+      background:
+        radial-gradient(ellipse at 75% 48%,rgba(58,134,244,.14),transparent 35%),
+        linear-gradient(135deg,rgba(255,255,255,.018),transparent 50%);
+    }
+    .hero-grid{
+      opacity:.54;
+      background-image:
+        linear-gradient(rgba(133,190,255,.04) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(133,190,255,.04) 1px,transparent 1px);
+      mask-image:linear-gradient(to bottom,transparent,black 18%,black 84%,transparent);
+    }
+    .hero-glow{
+      width:min(54vw,660px);
+      height:min(54vw,660px);
+      left:75%;
+      background:radial-gradient(circle,rgba(58,134,244,.18),transparent 70%);
+    }
+    .hero-content{z-index:3;max-width:740px;margin:0}
+    .hero-label{
+      color:#a9d2ff;
+      background:rgba(95,160,245,.1);
+      border-color:rgba(148,195,255,.25);
+      backdrop-filter:blur(14px);
+    }
+    .hero-label-dot{background:#a7d1ff}
+    .hero-name{
+      font-size:clamp(3.2rem,7.3vw,6.2rem);
+      line-height:.98;
+      margin-bottom:26px;
+    }
+    .hero-name .outline{-webkit-text-stroke:1.4px rgba(241,247,255,.62)}
+    .hero-name .accent{color:#86bdff;text-shadow:0 0 60px rgba(80,150,255,.32)}
+    .hero-tagline{margin:0 0 30px;max-width:570px;color:#c0ccdc;font-size:clamp(1rem,1.5vw,1.16rem)}
+    .hero-meta{justify-content:flex-start;gap:10px}
+    .hero-meta a,.hero-meta .hero-location{
+      color:#d9e5f4;
+      background:rgba(255,255,255,.055);
+      border-color:rgba(194,220,255,.14);
+      backdrop-filter:blur(16px);
+    }
+    .hero-meta a:hover{color:#a6d0ff;border-color:rgba(142,197,255,.42)}
+    .hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:0 0 28px}
+    .hero-button{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      min-height:48px;padding:0 19px;border-radius:14px;
+      font-family:var(--font-mono);font-size:.72rem;letter-spacing:.03em;
+      transition:transform .25s ease,background .25s ease,border-color .25s ease,box-shadow .25s ease;
+    }
+    .hero-button:hover{transform:translateY(-3px)}
+    .hero-button.primary{
+      color:#06101d;background:linear-gradient(135deg,#b5d9ff,#69aaff);
+      box-shadow:0 12px 32px rgba(65,137,239,.24);
+    }
+    .hero-button.secondary{
+      color:#e4efff;background:rgba(255,255,255,.055);
+      border:1px solid rgba(194,220,255,.18);backdrop-filter:blur(14px);
+    }
+    .hero-visual{position:relative;z-index:3;justify-self:end;width:min(100%,400px)}
+    .hero-photo-card{
+      position:relative;margin:0;padding:11px;border-radius:32px;
+      border:1px solid rgba(215,234,255,.28);
+      background:linear-gradient(145deg,rgba(255,255,255,.2),rgba(255,255,255,.035) 45%,rgba(68,135,227,.13));
+      box-shadow:0 32px 90px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.3);
+      backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+      transform:rotate(1.2deg);
+    }
+    .hero-photo-frame{position:relative;overflow:hidden;aspect-ratio:3/4;border-radius:23px;background:#10233c}
+    .hero-photo-frame::after{
+      content:"";position:absolute;inset:42% 0 0;
+      background:linear-gradient(180deg,transparent,rgba(4,12,24,.72));
+      pointer-events:none;
+    }
+    .hero-photo-frame img{width:100%;height:100%;object-fit:cover;object-position:center 44%}
+    .photo-chip{
+      position:absolute;top:19px;left:19px;z-index:2;
+      padding:8px 12px;border:1px solid rgba(231,242,255,.36);border-radius:999px;
+      background:rgba(8,20,38,.5);color:#f1f7ff;
+      font:500 .62rem var(--font-mono);letter-spacing:.1em;text-transform:uppercase;
+      backdrop-filter:blur(16px);
+    }
+    .hero-photo-caption{
+      position:absolute;right:19px;bottom:18px;left:19px;z-index:2;
+      display:flex;align-items:end;justify-content:space-between;gap:16px;color:#fff;
+    }
+    .hero-photo-caption strong{display:block;font:700 1rem var(--font-display);letter-spacing:-.02em}
+    .hero-photo-caption span{display:block;margin-top:4px;color:rgba(239,246,255,.76);font:.64rem var(--font-mono);letter-spacing:.05em}
+    .photo-orbit{
+      position:absolute;right:-26px;bottom:15%;z-index:3;
+      display:flex;align-items:center;gap:9px;padding:12px 15px;
+      border:1px solid rgba(205,227,255,.2);border-radius:16px;
+      background:rgba(10,23,42,.72);color:#eaf3ff;
+      box-shadow:0 18px 45px rgba(0,0,0,.28);backdrop-filter:blur(18px);
+      font:500 .64rem var(--font-mono);letter-spacing:.04em;
+    }
+    .photo-orbit span{width:8px;height:8px;border-radius:50%;background:#78b5ff;box-shadow:0 0 14px #78b5ff}
+    .hero-scroll{color:#9aaec5}
+
+    .section-wrap{padding-top:clamp(92px,12vh,140px);padding-bottom:clamp(92px,12vh,140px)}
+    .section-label{color:#9ecbff}
+    .section-label::before,.section-label::after{background:rgba(142,197,255,.46)}
+    .section-title{color:#f4f8ff}
+    .project-card,.skill-card,.cert-item,.experience-card,.about-card{
+      border:1px solid rgba(195,220,255,.15);
+      background:linear-gradient(145deg,rgba(255,255,255,.085),rgba(255,255,255,.025));
+      box-shadow:0 22px 70px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.09);
+      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    }
+    .project-card:hover,.skill-card:hover{
+      border-color:rgba(142,197,255,.36);
+      box-shadow:0 28px 80px rgba(0,0,0,.3),0 0 34px rgba(60,125,220,.1);
+    }
+    .project-card.code-card{border-top:1px solid rgba(195,220,255,.18)}
+    .project-tag{color:#b9d9ff;background:rgba(82,146,225,.12);border-color:rgba(132,183,244,.2)}
+    .project-tag[style],.project-tag.green{
+      color:#b9d9ff!important;
+      background:rgba(82,146,225,.12)!important;
+      border-color:rgba(132,183,244,.2)!important;
+    }
+    .project-link{color:#a8d0ff;background:rgba(76,142,231,.1);border-color:rgba(132,183,244,.22)}
+    .project-link:hover{background:rgba(76,142,231,.2);border-color:rgba(156,201,255,.45)}
+    .project-link.demo{color:#d7eaff;background:rgba(69,132,216,.12);border-color:rgba(134,187,250,.24)}
+    .recognition-item{background:rgba(255,255,255,.045);border-color:rgba(195,220,255,.14)}
+    .skill-icon svg{stroke:#9bcaff!important;filter:none!important}
+    .cert-status.done{color:#c7e2ff;background:rgba(82,146,225,.12);border-color:rgba(132,183,244,.22)}
+    .skill-card::before{background:#4b91f4}
+    .cert-provider{color:#a4ceff}
+    .footer-copy{color:#9baec4}
+    .reveal{opacity:1;transform:none;transition:none}
+
+    @media (max-width:900px){
+      #hero{grid-template-columns:minmax(0,1fr) minmax(250px,.72fr);gap:32px;padding-inline:clamp(24px,5vw,58px)}
+      .hero-name{font-size:clamp(3rem,8vw,5rem)}
+      .hero-visual{width:min(100%,340px)}
+    }
+    @media (max-width:700px){
+      #hero{min-height:auto;grid-template-columns:1fr;gap:34px;padding:122px 24px 82px}
+      .hero-content{max-width:620px}
+      .hero-name{font-size:clamp(3.2rem,14vw,5.4rem)}
+      .hero-tagline{font-size:1rem}
+      .hero-visual{justify-self:center;width:min(78%,330px);margin:4px auto 0}
+      .hero-photo-card{transform:rotate(.6deg)}
+      .photo-orbit{right:-20px}
+      .hero-scroll{display:none}
+      .hero-meta{gap:8px}
+      .hero-meta a,.hero-meta .hero-location{font-size:.62rem;padding:7px 10px}
+      .recognition-grid{grid-template-columns:1fr}
+      .nav-links{
+        background:rgba(7,17,31,.94);
+        border:1px solid rgba(195,220,255,.15);
+        box-shadow:0 20px 60px rgba(0,0,0,.34);
+      }
+    }
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+    }
+  </style>
 </head>
 <body>
 
@@ -607,11 +809,6 @@
   <section id="hero">
     <div class="hero-grid"></div>
     <div class="hero-glow"></div>
-    <div class="hero-bg-img">
-      <img src="images/hero-portrait.webp" alt="Retrato digital estilizado de Nicolás Monroy Chaparro"
-        width="1024" height="1024" fetchpriority="high" decoding="async" />
-    </div>
-    <canvas id="particles"></canvas>
     <div class="hero-content reveal">
       <div class="hero-label"><span class="hero-label-dot"></span>Último semestre · Ingeniería de Sistemas</div>
       <h1 class="hero-name">
@@ -620,6 +817,10 @@
         <span class="line accent">Chaparro</span>
       </h1>
       <p class="hero-tagline">Construyo soluciones de datos e IA: analítica con Power BI, agentes conversacionales y arquitecturas RAG, con enfoque en seguridad de LLMs.</p>
+      <div class="hero-actions">
+        <a class="hero-button primary" href="#projects">Explorar proyectos <span aria-hidden="true">↘</span></a>
+        <a class="hero-button secondary" href="files/Nicolas_MonroyChaparro_CV_ES.pdf" download="Nicolas_MonroyChaparro_CV_ES.pdf">Descargar CV <span aria-hidden="true">↓</span></a>
+      </div>
       <div class="hero-meta">
         <span class="hero-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg> Tunja y Bogotá</span>
         <a href="https://github.com/nmchx01" target="_blank" rel="noopener noreferrer">
@@ -635,6 +836,19 @@
           Email
         </a>
       </div>
+    </div>
+    <div class="hero-visual">
+      <figure class="hero-photo-card">
+        <div class="hero-photo-frame">
+          <span class="photo-chip">Visita · Cloud</span>
+          <img src="images/amazon-visit.png" alt="Nicolás durante su visita a Amazon Web Services" width="960" height="1280" fetchpriority="high" decoding="async" />
+          <figcaption class="hero-photo-caption">
+            <div><strong>Amazon Web Services</strong><span>Experiencia en el ecosistema cloud</span></div>
+            <span aria-hidden="true">↗</span>
+          </figcaption>
+        </div>
+      </figure>
+      <div class="photo-orbit"><span></span> DATA · AI · CLOUD</div>
     </div>
     <div class="hero-scroll"><span>Desplázate</span><div class="scroll-line"></div></div>
   </section>
@@ -1113,5 +1327,7 @@
     <p class="footer-copy">© 2026 Nicolás Monroy Chaparro — Todos los derechos reservados.</p>
   </footer>
 
-  <script src="js/main.js?v=3" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/ScrollTrigger.min.js" defer></script>
+  <script src="js/main.js?v=4" defer></script>
 </body>
