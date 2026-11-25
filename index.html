@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#f3eddf" />
+  <meta name="theme-color" content="#070b12" />
   <meta name="author" content="Nicolás Monroy Chaparro" />
   <title>Nicolás Monroy Chaparro | Ingeniería de Datos e IA</title>
   <meta name="description" content="Portafolio de Nicolás Monroy Chaparro: Power BI, agentes conversacionales, arquitecturas RAG y seguridad de LLMs." />
@@ -873,6 +873,140 @@
       .hero-photo-card{box-shadow:6px 7px 0 var(--ink),0 22px 50px rgba(33,43,53,.16)}
     }
     @media(prefers-reduced-motion:reduce){.scroll-progress{display:none}}
+
+    /* Blue, black and white visual system with varied editorial layouts. */
+    :root{
+      --bg:#070b12;--paper:#070b12;--ink:#f5f8ff;--white:#f5f8ff;
+      --blue:#83baff;--cyan:#83baff;--cyan-dim:rgba(92,158,245,.16);--cyan-glow:rgba(75,145,244,.28);
+      --gray:#aab6c8;--gray-light:#c4cede;--red:#83baff;
+      --glass:rgba(255,255,255,.055);--glass-border:rgba(196,220,255,.16)
+    }
+    html{background:#070b12}
+    body{
+      color:#dbe5f4;background:#070b12;
+      background-image:radial-gradient(rgba(143,190,255,.07) .65px,transparent .65px),radial-gradient(ellipse at 78% 3%,rgba(47,105,185,.22),transparent 38rem),linear-gradient(155deg,rgba(255,255,255,.025),transparent 52%);
+      background-size:14px 14px,auto,auto;background-attachment:fixed
+    }
+    #navbar,#navbar.scrolled{background:rgba(7,11,18,.82);border-color:rgba(196,220,255,.15);box-shadow:0 14px 38px rgba(0,0,0,.25)}
+    .nav-logo,.nav-logo span{color:#a8d0ff}
+    .nav-links a{color:#c4cede}.nav-links a:hover,.nav-links a[aria-current="location"]{color:#fff}
+    .nav-cta{color:#06101d;background:#a8d0ff;border-color:#a8d0ff;box-shadow:3px 3px 0 rgba(255,255,255,.55)}
+    .nav-cta:hover{color:#fff;background:#397dce;border-color:#8bbdff;box-shadow:1px 1px 0 rgba(255,255,255,.55)}
+    .nav-hamburger span{background:#edf4ff}
+    .scroll-progress{background:linear-gradient(90deg,#fff,#3983df,#a8d0ff);box-shadow:0 1px 12px rgba(97,161,255,.38)}
+    #hero{background:radial-gradient(ellipse at 76% 48%,rgba(47,111,198,.18),transparent 42%),linear-gradient(135deg,rgba(255,255,255,.025),transparent 62%)}
+    .hero-grid{background-image:linear-gradient(rgba(140,190,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(140,190,255,.05) 1px,transparent 1px)}
+    .hero-glow{background:radial-gradient(circle,rgba(83,151,242,.17),transparent 70%)}
+    .hero-label{color:#c0dcff;background:rgba(30,69,116,.25);border-color:rgba(161,202,255,.26);box-shadow:0 8px 28px rgba(0,0,0,.18)}
+    .hero-label-dot,.photo-orbit span{background:#a8d0ff;box-shadow:0 0 12px rgba(128,185,255,.65)}
+    .hero-name,.hero-name .filled{color:#f5f8ff}
+    .hero-name .outline{-webkit-text-stroke:1.5px rgba(231,241,255,.72)}
+    .hero-name .accent{color:#91c2ff;text-shadow:0 0 46px rgba(69,139,225,.34)}
+    .hero-tagline,.hero-scroll{color:#c4cede}
+    .hero-meta a,.hero-meta .hero-location{color:#e5efff;background:rgba(255,255,255,.06);border-color:rgba(196,220,255,.2);box-shadow:none}
+    .hero-meta a:hover{color:#fff;border-color:#91c2ff}
+    .hero-button,.contact-btn{border-radius:13px;border-color:rgba(196,220,255,.3);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+    .hero-button.primary,.contact-btn-primary{color:#07101c;background:linear-gradient(135deg,#eaf3ff,#82baff);border-color:#a8d0ff;box-shadow:0 12px 32px rgba(65,137,239,.24)}
+    .hero-button.primary:hover,.contact-btn-primary:hover{background:#a8d0ff}
+    .hero-button.secondary,.contact-btn-secondary,.contact-btn-cv{color:#eaf3ff;background:rgba(255,255,255,.055);border-color:rgba(196,220,255,.2)}
+    .hero-photo-card{border-color:rgba(215,234,255,.24);background:linear-gradient(145deg,rgba(255,255,255,.16),rgba(255,255,255,.025) 45%,rgba(68,135,227,.15));box-shadow:0 32px 90px rgba(0,0,0,.44),inset 0 1px 0 rgba(255,255,255,.22)}
+    .hero-photo-frame{border-color:rgba(212,230,255,.22);background:#10233c}
+    .photo-chip,.photo-orbit{border-color:rgba(205,227,255,.25);background:rgba(8,20,38,.65);color:#eff6ff;box-shadow:0 14px 36px rgba(0,0,0,.28)}
+    .section-label,.knowledge-kicker,.cv-lang-alt{color:#a8d0ff}
+    .section-label::before,.section-label::after{background:rgba(142,197,255,.56)}
+    .section-title,.project-title,.skill-name,.recognition-info h4,.about-subtitle,.timeline-title,.contact-heading{color:#f5f8ff}
+    .v-label{color:rgba(170,205,250,.42)}
+    .project-card,.skill-card,.experience-card,.about-card,.recognition-item,.knowledge-card{
+      border:1px solid rgba(196,220,255,.15);border-radius:24px;
+      background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.025) 58%,rgba(51,104,177,.08));
+      box-shadow:0 20px 58px rgba(0,0,0,.27),inset 0 1px 0 rgba(255,255,255,.08);
+      backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)
+    }
+    .project-card:hover,.skill-card:hover,.recognition-item:hover{border-color:rgba(145,194,255,.5);box-shadow:0 28px 74px rgba(0,0,0,.34),0 0 30px rgba(60,125,220,.1)}
+    .project-card.code-card{border-top:1px solid rgba(196,220,255,.2)}
+    .project-tag,.project-tag[style],.project-tag.green{color:#bddcff!important;background:rgba(78,137,208,.13)!important;border-color:rgba(143,190,255,.22)!important}
+    .project-link,.project-link.demo{color:#c5e0ff;background:rgba(76,142,231,.11);border-color:rgba(143,190,255,.24)}
+    .project-link:hover,.project-link.demo:hover{color:#fff;background:rgba(76,142,231,.24);border-color:#91c2ff}
+    .project-badge{color:#d5e8ff;background:rgba(76,142,231,.12);border-color:rgba(143,190,255,.22)}
+    .recognition-card{grid-column:1/-1;padding:30px clamp(22px,4vw,38px)}
+    .recognition-card .project-title svg{stroke:#a8d0ff}
+    .recognition-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+    .recognition-item{overflow:hidden;background:rgba(255,255,255,.045);border-color:rgba(196,220,255,.15);box-shadow:0 16px 42px rgba(0,0,0,.23)}
+    .recognition-thumb{aspect-ratio:16/10;background:#0d1929;border-color:rgba(196,220,255,.14)}
+    .recognition-thumb::after{background:linear-gradient(180deg,transparent 62%,rgba(3,8,15,.58))}
+    .recognition-thumb img{filter:brightness(.95) saturate(.78)}
+    .recognition-year{border-color:rgba(220,237,255,.24);background:rgba(5,12,22,.72)}
+    .recognition-info h4{color:#f3f7ff}.recognition-info p{color:#c4cede}
+    .projects-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;max-width:1500px}
+    .project-card.code-card{min-width:0;border-radius:24px 14px 24px 14px}
+    .project-card.code-card:nth-child(3n){border-radius:14px 24px 14px 24px}
+    .project-body{padding:24px 22px 26px}
+    .project-tags{gap:6px}.project-tag{font-size:.57rem;padding:4px 9px}
+    .project-title{font-size:1.05rem}.project-desc{font-size:.79rem;line-height:1.7}
+    .projects-grid .project-link{font-size:.61rem;padding:8px 11px}
+    .skills-grid{display:flex;flex-direction:column;gap:14px;max-width:1500px;margin:0 auto}
+    .skill-card{
+      display:grid;grid-template-columns:64px minmax(150px,.34fr) minmax(0,1fr);align-items:center;gap:18px;
+      width:100%;min-height:112px;padding:20px 28px;border-radius:20px 32px 20px 32px
+    }
+    .skill-card:nth-child(even){border-radius:32px 20px 32px 20px}
+    .skill-icon{width:54px;height:54px;display:grid;place-items:center;border:1px solid rgba(165,205,255,.2);border-radius:17px;background:rgba(69,130,207,.12)}
+    .skill-icon svg{stroke:#a8d0ff!important;filter:none!important}
+    .skill-card::before{background:#5799ee}
+    .skill-name{margin:0;color:#f5f8ff}
+    .skill-list{display:flex;flex-wrap:wrap;gap:8px}
+    .skill-item{padding:7px 11px;border:1px solid rgba(196,220,255,.12);border-radius:999px;background:rgba(255,255,255,.035);color:#c4cede;font-size:.75rem}
+    .skill-item::before{color:#a8d0ff}
+    .tech-brick{--accent:#a8d0ff!important;border-color:rgba(196,220,255,.18);background:rgba(255,255,255,.045);box-shadow:0 8px 20px rgba(0,0,0,.22)}
+    .tech-brick .tech-name{color:#edf4ff}.tech-brick .tech-group{color:#aab8cb}
+    #tech{border-color:rgba(196,220,255,.1);background:rgba(255,255,255,.025)}
+    .tech-header h2{color:#f5f8ff}.tech-hint{color:#aab6c8}
+    .knowledge-card{display:grid;grid-template-columns:1fr;gap:0;max-width:none;margin:0;padding:0}
+    .knowledge-photo-wrap{aspect-ratio:16/10;border:0;border-bottom:1px solid rgba(196,220,255,.15);border-radius:23px 23px 0 0;background:#0c1727;box-shadow:none}
+    .knowledge-photo{object-position:center 40%;filter:saturate(.88)}
+    .knowledge-photo-tag{border-color:rgba(196,220,255,.3);background:rgba(5,12,22,.72);color:#eaf3ff;box-shadow:none}
+    .knowledge-copy{padding:20px 22px 24px}
+    .knowledge-copy h3{color:#f5f8ff;font-family:var(--font-display);font-weight:750}
+    .knowledge-copy>p:not(.knowledge-kicker){color:#c4cede;font-size:.8rem}
+    .knowledge-note{border-color:rgba(170,205,250,.3);color:#dbe9fb;background:rgba(255,255,255,.04)}
+    .knowledge-note span{color:#a8d0ff}
+    .about-grid{grid-template-columns:minmax(260px,.78fr) minmax(0,1.5fr);gap:clamp(30px,5vw,72px);max-width:1320px}
+    .about-portrait{position:relative;overflow:hidden;margin:0;aspect-ratio:4/5;border:1px solid rgba(196,220,255,.2);border-radius:36px 18px 36px 18px;background:#0c1727;box-shadow:10px 12px 0 rgba(95,155,230,.23),0 28px 72px rgba(0,0,0,.35)}
+    .about-portrait img{width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+    .about-portrait:hover img{transform:scale(1.035)}
+    .about-portrait::after{content:"";position:absolute;inset:55% 0 0;background:linear-gradient(180deg,transparent,rgba(4,10,18,.65));pointer-events:none}
+    .about-portrait figcaption{position:absolute;z-index:1;left:18px;bottom:16px;color:#f5f8ff;font:600 .68rem var(--font-mono);letter-spacing:.08em;text-transform:uppercase}
+    .about-bio,.about-edu-item,.timeline-desc{color:#c4cede}
+    .about-langs{gap:9px}.about-lang{border-color:rgba(196,220,255,.15);background:rgba(255,255,255,.045);color:#dbe5f4}
+    .about-stat-value{color:#a8d0ff}.about-stat-label{color:#aab6c8}
+    .timeline-item::before{background:rgba(130,182,245,.32)}
+    .timeline-date{color:#a8d0ff!important}
+    .timeline-dot{border-color:#a8d0ff!important;box-shadow:0 0 0 4px rgba(90,150,225,.14)!important;background:#070b12!important}
+    #contact{background:linear-gradient(150deg,rgba(40,100,175,.17),rgba(255,255,255,.025) 52%,rgba(10,25,45,.2));border-top:1px solid rgba(196,220,255,.14)}
+    .contact-sub,.contact-sub+.contact-btns{color:#c4cede}
+    .cv-card{border:1px solid rgba(196,220,255,.2);border-radius:18px;background:rgba(255,255,255,.055);color:#edf4ff;box-shadow:0 12px 32px rgba(0,0,0,.22)}
+    .cv-card-title,.cv-card-sub{color:#edf4ff}
+    .footer-copy,.contact-sub{color:#aab6c8}
+    .skip-link{background:#a8d0ff;color:#07101c}
+    ::-webkit-scrollbar-track{background:#070b12}::-webkit-scrollbar-thumb{background:#42668f;border-radius:99px}
+    @media(max-width:1100px){
+      .projects-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .recognition-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media(max-width:700px){
+      .nav-links{background:rgba(7,12,22,.97);border:1px solid rgba(196,220,255,.17);box-shadow:0 16px 40px rgba(0,0,0,.4)}
+      .projects-grid,.recognition-grid{grid-template-columns:1fr}
+      .recognition-card{padding:22px 16px}
+      .skill-card{grid-template-columns:48px minmax(0,1fr);gap:12px;padding:17px 18px}
+      .skill-icon{width:44px;height:44px;border-radius:14px}
+      .skill-name{font-size:1rem}
+      .skill-list{grid-column:1/-1;padding-left:60px}
+      .about-grid{grid-template-columns:1fr;gap:30px;text-align:left}
+      .about-portrait{width:min(100%,420px);margin-inline:auto;aspect-ratio:4/4.2}
+      .knowledge-card{grid-template-columns:1fr;gap:0;margin:0}
+      .knowledge-photo-wrap{aspect-ratio:16/10}
+      .hero-photo-card{box-shadow:7px 8px 0 #111c2b,0 24px 54px rgba(0,0,0,.4)}
+    }
   </style>
 
 </head>
@@ -964,22 +1098,42 @@
         <div class="recognition-grid">
           <div class="recognition-item">
             <div class="recognition-thumb">
-              <img src="images/hackathon-feature.webp" alt="Equipo ganador de la Hackathon Universitaria 2025 en las oficinas de YouTube" width="800" height="600" loading="lazy" decoding="async" />
-              <span class="recognition-year">2025</span>
-            </div>
-            <div class="recognition-info">
-              <h4>Hackathon Universitaria — 1er Lugar</h4>
-              <p>Proyecto ganador de la hackathon de la Universidad Santo Tomás, reconocimiento institucional por innovación y trabajo en equipo bajo presión de tiempo.</p>
-            </div>
-          </div>
-          <div class="recognition-item">
-            <div class="recognition-thumb">
               <img src="images/google-feature.webp" alt="Nicolás Monroy durante la visita académica a Google Colombia" width="800" height="600" loading="lazy" decoding="async" />
               <span class="recognition-year">2025</span>
             </div>
             <div class="recognition-info">
               <h4>Visita Académica a Google Colombia</h4>
               <p>Premio de la Gobernación tras ganar la hackathon: exposición directa a la cultura de ingeniería de software en las oficinas de Google Colombia.</p>
+            </div>
+          </div>
+          <div class="recognition-item">
+            <div class="recognition-thumb">
+              <img src="images/microsoft-feature.webp" alt="Nicolás Monroy durante una visita técnica a Microsoft Colombia" width="800" height="600" loading="lazy" decoding="async" />
+              <span class="recognition-year">2026</span>
+            </div>
+            <div class="recognition-info">
+              <h4>Visita técnica a Microsoft</h4>
+              <p>Encuentro para conocer el ecosistema de inteligencia artificial y compartir aprendizajes sobre tecnología.</p>
+            </div>
+          </div>
+          <div class="recognition-item">
+            <div class="recognition-thumb">
+              <img src="images/amazon-visit.png" alt="Nicolás Monroy durante la visita a Amazon Web Services" width="960" height="1280" loading="lazy" decoding="async" />
+              <span class="recognition-year">AWS</span>
+            </div>
+            <div class="recognition-info">
+              <h4>Visita a Amazon Web Services</h4>
+              <p>Fuimos invitados a conocer AWS por formar parte de AWS Core Team Members. Una oportunidad para acercarnos al ecosistema cloud y compartir aprendizajes sobre tecnología.</p>
+            </div>
+          </div>
+          <div class="recognition-item">
+            <div class="recognition-thumb">
+              <img src="images/hackathon-feature.webp" alt="Equipo ganador de la Hackathon Universitaria 2025 en las oficinas de YouTube" width="800" height="600" loading="lazy" decoding="async" />
+              <span class="recognition-year">2025</span>
+            </div>
+            <div class="recognition-info">
+              <h4>Hackathon Universitaria — 1er Lugar</h4>
+              <p>Proyecto ganador de la hackathon de la Universidad Santo Tomás, reconocimiento institucional por innovación y trabajo en equipo bajo presión de tiempo.</p>
             </div>
           </div>
           <div class="recognition-item">
@@ -1141,19 +1295,6 @@
       </div>
     </div>
 
-    <article class="knowledge-card reveal" aria-labelledby="knowledge-title">
-      <div class="knowledge-photo-wrap">
-        <img class="knowledge-photo" src="images/amazon-visit.png" alt="Nicolás durante una visita a Amazon Web Services, junto al logotipo de AWS" width="960" height="1280" loading="lazy" decoding="async" />
-        <span class="knowledge-photo-tag">AWS · Visita</span>
-      </div>
-      <div class="knowledge-copy">
-        <p class="knowledge-kicker">Conocimiento del ecosistema cloud</p>
-        <h3 id="knowledge-title">Una visita a AWS</h3>
-        <p>Fuimos invitados a conocer Amazon Web Services por formar parte de AWS Core Team Members. Una oportunidad para acercarnos al ecosistema cloud y compartir aprendizajes sobre tecnología.</p>
-        <span class="knowledge-note"><span aria-hidden="true">✦</span> Aprendizaje continuo · Comunidad · Cloud</span>
-      </div>
-    </article>
-
   </section>
 
   <!-- ══ TECH WALL ══ -->
@@ -1242,14 +1383,10 @@
       <h2 class="section-title">Sobre Mí</h2>
     </div>
     <div class="about-grid">
-      <div class="about-orb-wrapper reveal">
-        <div class="about-orb">
-          <div class="about-orb-label">
-            <span class="orb-initial">N</span>
-            <span class="orb-sub">Nicolás M.</span>
-          </div>
-        </div>
-      </div>
+      <figure class="about-portrait reveal">
+        <img src="images/nicolas-usta-illustration.png" alt="Ilustración estilo anime de Nicolás en la Universidad Santo Tomás, rodeado de referencias a datos, inteligencia artificial y deporte" width="1312" height="1200" loading="lazy" decoding="async" />
+        <figcaption>Nicolás · Datos, IA y deporte</figcaption>
+      </figure>
       <div class="about-info reveal reveal-delay-1">
         <p class="about-bio">Estudiante de Ingeniería de Sistemas en el último semestre en la Universidad Santo Tomás (Tunja), con graduación esperada para el primer semestre de 2027. Tengo experiencia como practicante en analítica de datos e inteligencia artificial. Mi enfoque es construir soluciones de datos e IA aplicada: análisis con Power BI, agentes conversacionales y arquitecturas RAG, con atención a la seguridad de LLMs.</p>
         <h3 class="about-subtitle">Educación</h3>
